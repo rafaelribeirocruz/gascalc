@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>gasCalc v0.1</title>
+        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css">
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <span class="mdl-layout-title">Calculadora Combustivel</span>
+                    <!-- Add spacer, to align navigation to the right -->
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+            </header>
+            <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title">gasCalc v0.1</span>
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                </nav>
+            </div>
+            <div>
+                <h2>Meu carro</h2>
+            </div>
+            <div>
+              <label for="myCar">Modelo:</label>
+              <input type="text" id="myCar"/>
+              <label for="myTank">Tanque:</label>
+              <input type="text" id="myTank"/>
+              <span>Litros</span>
+            </div>
+            <div><h3>Consumo</h3></div>
+            <div>
+              <label for="gasSpend">Gasolina</label>
+              <input type="text" id="gasSpend"/>
+              <span>km/L</span>
+            </div>
+            <div>
+              <label for="etanolSpend">Etanol</label>
+              <input type="text" id="etanolSpend"/>
+              <span>km/L</span>
+            </div>
+            <div><h3>Preco</h3></div>
+            <div>
+              <label for="gasPrice">Gasolina</label>
+              <input type="text" id="gasPrice"/>
+              <span>Litro</span>
+            </div>
+            <div>
+              <label for="etanolPrice">Etanol</label>
+              <input type="text" id="etanolPrice"/>
+              <span>Litro</span>
+            </div>
+            <div>
+              <span id="result"></span>
+              <br />
+              <button id="calculate">Calcular</button>
+            </div>
+        </div>
+        <script type="text/javascript" charset="utf-8" src="js/core.js"></script>
+    </body>
+</html>
