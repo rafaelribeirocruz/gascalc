@@ -30,15 +30,16 @@ Gas.calculate = function () {
     var result = document.getElementById('result');
     var price = Gas.validatePrices();
     var spend = Gas.validateConsumption();
+    var message = "";
                
     if(!price.valid)
-        result.innerText = "Erro no preço!";
+        message = "Erro no preço!";
     else if(!spend.valid) {    
         var errMsg = "* Calculo usando a proporcão padrao de 70%";
         if( price.etanol < (price.gas * 0.7) ){
-            result.innerText = "ETANOL!" + errMsg;
+            message = "ETANOL!" + errMsg;
         } else {
-            result.innerText = "GASOLINA!" + errMsg;
+            message = "GASOLINA!" + errMsg;
         } 
     } else {
         if(price.valid && spend.valid){
@@ -46,13 +47,16 @@ Gas.calculate = function () {
             var etanolTotal = Gas.calculateTotal(100, spend.etanol, price.etanol);
     
             if(gasTotal === etanolTotal) 
-                result.innerText = "TANTO FAZ";
+                message = "TANTO FAZ";
             else if(gasTotal < etanolTotal)
-                result.innerText = "GASOLINA";
+                message = "GASOLINA";
             else
-                result.innerText = "ETANOL";      
+                message = "ETANOL";      
         } 
     }
+    
+    result.style.visibility = 'visible';
+    result.querySelector('span').innerText = message;
 }
             
 Gas.saveState = function () {
@@ -61,6 +65,17 @@ Gas.saveState = function () {
             
 Gas.loadState = function () {
   // TODO Load current state from local storage
+}
+
+Gas.serializeFields = function () {
+    return {
+        carName : document.getElementById('myCar').value,
+        tankCapacity : document.getElementById('myTank').value,
+        etanolPrice : document.getElementById('etanolPrice').value,
+        gasPrice : document.getElementById('gasPrice').value,
+        etanolSpend : document.getElementById('etanolSpend').value,
+        gasSpend : document.getElementById('gasSpend').value 
+    };
 }
             
 var calculate = document.getElementById('calculate');

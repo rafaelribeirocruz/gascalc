@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css">
         <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="css/styles.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
@@ -27,43 +28,73 @@
                     <a class="mdl-navigation__link" href="">Link</a>
                 </nav>
             </div>
-            <div>
-                <h2>Meu carro</h2>
-            </div>
-            <div>
-              <label for="myCar">Modelo:</label>
-              <input type="text" id="myCar"/>
-              <label for="myTank">Tanque:</label>
-              <input type="text" id="myTank"/>
-              <span>Litros</span>
-            </div>
-            <div><h3>Consumo</h3></div>
-            <div>
-              <label for="gasSpend">Gasolina</label>
-              <input type="text" id="gasSpend"/>
-              <span>km/L</span>
-            </div>
-            <div>
-              <label for="etanolSpend">Etanol</label>
-              <input type="text" id="etanolSpend"/>
-              <span>km/L</span>
-            </div>
-            <div><h3>Preco</h3></div>
-            <div>
-              <label for="gasPrice">Gasolina</label>
-              <input type="text" id="gasPrice"/>
-              <span>Litro</span>
-            </div>
-            <div>
-              <label for="etanolPrice">Etanol</label>
-              <input type="text" id="etanolPrice"/>
-              <span>Litro</span>
-            </div>
-            <div>
-              <span id="result"></span>
-              <br />
-              <button id="calculate">Calcular</button>
-            </div>
+            <main class="mdl-layout__content">
+                <div class="page-content">
+                    <div>
+                        <h2>Meu carro</h2>                        
+                    </div>
+                    <div>
+                        <i class="material-icons">directions_car</i>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input type="text" id="myCar" class="mdl-textfield__input"/>
+                            <label for="myCar" class="mdl-textfield__label">Modelo</label>
+                        </div>                        
+                    </div>
+                    <div>
+                        <i class="material-icons">&#xe546;</i>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input type="text" id="myTank" class="mdl-textfield__input" pattern="-?[0-9]*(\,[0-9]+)?"/>
+                            <label for="myTank" class="mdl-textfield__label">Tanque(Litros)</label>                                       
+                            <span class="mdl-textfield__error">O valor não é numérico!</span>               
+                        </div>
+                    </div>
+                    <div>                        
+                        <i class="material-icons">&#xE922;</i>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input type="text" id="gasSpend" class="mdl-textfield__input" pattern="-?[0-9]*(\,[0-9]+)?"/>
+                            <label for="gasSpend" class="mdl-textfield__label">Consumo Gasolina (Km/L)</label>
+                            <span class="mdl-textfield__error">O valor não é numérico!</span>                        
+                        </div>
+                    </div>
+                    <div>                        
+                        <i class="material-icons">&#xE922;</i>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input type="text" id="etanolSpend" class="mdl-textfield__input" pattern="-?[0-9]*(\,[0-9]+)?"/>
+                            <label for="etanolSpend" class="mdl-textfield__label">Consumo Etanol(Km/L)</label>
+                            <span class="mdl-textfield__error">O valor não é numérico!</span>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Gravar Carro</button>
+                    </div>
+                    <div><h2>Preco</h2></div>
+                    <div>                        
+                        <i class="material-icons">&#xE227;</i>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input type="text" id="gasPrice" class="mdl-textfield__input" pattern="-?[0-9]*(\,[0-9]+)?"/>
+                            <label for="gasPrice" class="mdl-textfield__label">Gasolina (BRL/Litro)</label>
+                            <span class="mdl-textfield__error">O valor não é numérico!</span>
+                        </div>
+                    </div>
+                    <div>                        
+                        <i class="material-icons">&#xE227;</i>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input type="text" id="etanolPrice" class="mdl-textfield__input" pattern="-?[0-9]*(\,[0-9]+)?"/>
+                            <label for="etanolPrice" class="mdl-textfield__label">Etanol (BRL/Litro)</label>
+                            <span class="mdl-textfield__error">O valor não é numérico!</span>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Gravar Preços</button>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="calculate">Calcular</button>
+                    </div>
+                    <br />
+                    <div id="result" style="visibility:hidden;">
+                        <i class="material-icons">&#xE645;</i>
+                        <span></span>
+                    </div> 
+                </div>
+            </main>            
         </div>
         <script type="text/javascript" charset="utf-8" src="js/core.js"></script>
     </body>
