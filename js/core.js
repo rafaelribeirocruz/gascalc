@@ -59,12 +59,28 @@ Gas.calculate = function () {
     result.querySelector('span').innerText = message;
 }
             
-Gas.saveState = function () {
-  // TODO Save current state in local storage
+Gas.saveState = function (data) {
+    Gas.currentCar = data.carName;
+    window.localStorage.setItem(Gas.currentCar, JSON.stringify(data))
 }
             
 Gas.loadState = function () {
-  // TODO Load current state from local storage
+    var loaded = JSON.parse(window.localStorage.getItem(Gas.currentCar));
+
+    if(loaded !== undefined){
+        var myCar = document.getElementById('myCar');        
+        myCar.value = loaded.carName;
+        myCar.change();
+
+        var myTank = document.getElementById('myTank');
+        myTank.click();
+        myTank.value = loaded.tankCapacity;
+
+        document.getElementById('etanolPrice').value = loaded.etanolPrice;
+        document.getElementById('gasPrice').value = loaded.gasPrice;
+        document.getElementById('etanolSpend').value = loaded.etanolSpend;
+        document.getElementById('gasSpend').value = loaded.gasSpend;
+    }    
 }
 
 Gas.serializeFields = function () {
@@ -82,4 +98,16 @@ var calculate = document.getElementById('calculate');
             
 calculate.addEventListener('click', function (){
     Gas.calculate();   
+});
+
+var save = document.getElementById('saveData');
+
+save.addEventListener('click', function () {
+    Gas.saveState(Gas.serializeFields());
+});
+
+var load = document.getElementById('loadData');
+
+load.addEventListener('click', function(){
+    Gas.loadState();
 });
