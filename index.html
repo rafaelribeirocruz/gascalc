@@ -21,11 +21,11 @@
             </header>
             <div class="mdl-layout__drawer">
                 <span class="mdl-layout-title">gasCalc v0.1</span>
-                <nav class="mdl-navigation">
+                <nav class="mdl-navigation" id="listOfCars">
+                    <!--<a class="mdl-navigation__link" href="">Link</a>
                     <a class="mdl-navigation__link" href="">Link</a>
                     <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>-->
                 </nav>
             </div>
             <main class="mdl-layout__content">
@@ -43,7 +43,7 @@
                     <div>
                         <i class="material-icons">&#xe546;</i>
                         <div class="mdl-textfield mdl-js-textfield">
-                            <input type="text" id="myTank" class="mdl-textfield__input" pattern="-?[0-9]*(\,[0-9]+)?"/>
+                            <input type="text" id="myTank" class="mdl-textfield__input" pattern="[0-9]*"/>
                             <label for="myTank" class="mdl-textfield__label">Tanque(Litros)</label>                                       
                             <span class="mdl-textfield__error">O valor não é numérico!</span>               
                         </div>
@@ -51,7 +51,7 @@
                     <div>                        
                         <i class="material-icons">&#xE922;</i>
                         <div class="mdl-textfield mdl-js-textfield">
-                            <input type="text" id="gasSpend" class="mdl-textfield__input" pattern="-?[0-9]*(\,[0-9]+)?"/>
+                            <input type="text" id="gasSpend" class="mdl-textfield__input" pattern="[0-9]*"/>
                             <label for="gasSpend" class="mdl-textfield__label">Consumo Gasolina (Km/L)</label>
                             <span class="mdl-textfield__error">O valor não é numérico!</span>                        
                         </div>
@@ -59,7 +59,7 @@
                     <div>                        
                         <i class="material-icons">&#xE922;</i>
                         <div class="mdl-textfield mdl-js-textfield">
-                            <input type="text" id="etanolSpend" class="mdl-textfield__input" pattern="-?[0-9]*(\,[0-9]+)?"/>
+                            <input type="text" id="etanolSpend" class="mdl-textfield__input" pattern="[0-9]*"/>
                             <label for="etanolSpend" class="mdl-textfield__label">Consumo Etanol(Km/L)</label>
                             <span class="mdl-textfield__error">O valor não é numérico!</span>
                         </div>
@@ -71,7 +71,7 @@
                     <div>                        
                         <i class="material-icons">&#xE227;</i>
                         <div class="mdl-textfield mdl-js-textfield">
-                            <input type="text" id="gasPrice" class="mdl-textfield__input" pattern="-?[0-9]*(\,[0-9]+)?"/>
+                            <input type="text" id="gasPrice" class="mdl-textfield__input" pattern="[0-9]+([\.,][0-9]+)?"/>
                             <label for="gasPrice" class="mdl-textfield__label">Gasolina (BRL/Litro)</label>
                             <span class="mdl-textfield__error">O valor não é numérico!</span>
                         </div>
@@ -79,7 +79,7 @@
                     <div>                        
                         <i class="material-icons">&#xE227;</i>
                         <div class="mdl-textfield mdl-js-textfield">
-                            <input type="text" id="etanolPrice" class="mdl-textfield__input" pattern="-?[0-9]*(\,[0-9]+)?"/>
+                            <input type="text" id="etanolPrice" class="mdl-textfield__input" pattern="[0-9]+([\.,][0-9]+)?"/>
                             <label for="etanolPrice" class="mdl-textfield__label">Etanol (BRL/Litro)</label>
                             <span class="mdl-textfield__error">O valor não é numérico!</span>
                         </div>

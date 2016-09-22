@@ -61,7 +61,9 @@ Gas.calculate = function () {
             
 Gas.saveState = function (data) {
     Gas.currentCar = data.carName;
-    window.localStorage.setItem(Gas.currentCar, JSON.stringify(data))
+    window.localStorage.setItem(Gas.currentCar, JSON.stringify(data));
+    Gas.updateList(Gas.currentCar);
+    Gas.loadCarList();
 }
             
 Gas.loadState = function () {
@@ -70,8 +72,13 @@ Gas.loadState = function () {
     if(loaded !== undefined){
         var myCar = document.getElementById('myCar');        
         myCar.value = loaded.carName;
-        myCar.change();
 
+        try {
+            myCar.change();    
+        } catch (error) {
+            //do nothing for now
+        }
+        
         var myTank = document.getElementById('myTank');
         myTank.click();
         myTank.value = loaded.tankCapacity;
@@ -81,6 +88,44 @@ Gas.loadState = function () {
         document.getElementById('etanolSpend').value = loaded.etanolSpend;
         document.getElementById('gasSpend').value = loaded.gasSpend;
     }    
+}
+
+Gas.carListName = function () {
+    return "gascalc-carlist";
+}
+
+Gas.updateList = function (carName){
+    if(carName !== undefined && carName.length > 0){
+        var carList = JSON.parse(window.localStorage.getItem(Gas.carListName()));
+
+        if (carList === undefined || carList === null){
+            carList = [];
+        }
+
+        carList.push(carName);
+
+        if (carName !== Gas.carListName()){
+            window.localStorage.setItem(Gas.carListName(), JSON.stringify(carList));
+        }
+    }
+}
+
+Gas.loadCarList = function (){
+    var carList = JSON.parse(window.localStorage.getItem(Gas.carListName()));
+    var items = '';
+
+    if(carList !== null && carList.length > 0){
+        carList.forEach(function(element) {
+            items += '<a class=\'mdl-navigation__link\' onclick=\'Gas.loadCar("' + element + '")\' >' + element + '</a>';
+        }, this);
+
+        document.getElementById('listOfCars').innerHTML = items;
+    }
+}
+
+Gas.loadCar = function (carName){
+    Gas.currentCar = carName;
+    Gas.loadState();
 }
 
 Gas.serializeFields = function () {
@@ -111,3 +156,7 @@ var load = document.getElementById('loadData');
 load.addEventListener('click', function(){
     Gas.loadState();
 });
+
+window.onload = function () {
+    Gas.loadCarList();
+}
