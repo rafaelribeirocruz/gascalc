@@ -70,23 +70,13 @@ Gas.loadState = function () {
     var loaded = JSON.parse(window.localStorage.getItem(Gas.currentCar));
 
     if(loaded !== undefined){
-        var myCar = document.getElementById('myCar');        
-        myCar.value = loaded.carName;
-
-        try {
-            myCar.change();    
-        } catch (error) {
-            //do nothing for now
-        }
-        
-        var myTank = document.getElementById('myTank');
-        myTank.click();
-        myTank.value = loaded.tankCapacity;
-
-        document.getElementById('etanolPrice').value = loaded.etanolPrice;
-        document.getElementById('gasPrice').value = loaded.gasPrice;
-        document.getElementById('etanolSpend').value = loaded.etanolSpend;
-        document.getElementById('gasSpend').value = loaded.gasSpend;
+        GasHelper.changeField('#myCar', loaded.carName);
+        GasHelper.changeField('#myTank', loaded.tankCapacity);
+        GasHelper.changeField('#etanolPrice', loaded.etanolPrice);
+        GasHelper.changeField('#gasPrice', loaded.gasPrice);
+        GasHelper.changeField('#etanolSpend', loaded.etanolSpend);
+        GasHelper.changeField('#gasSpend', loaded.gasSpend);
+        GasHelper.hidePanel();        
     }    
 }
 
@@ -102,10 +92,12 @@ Gas.updateList = function (carName){
             carList = [];
         }
 
-        carList.push(carName);
+        if(carList.indexOf(carName) < 0){
+            carList.push(carName);
 
-        if (carName !== Gas.carListName()){
-            window.localStorage.setItem(Gas.carListName(), JSON.stringify(carList));
+            if (carName !== Gas.carListName()){
+                window.localStorage.setItem(Gas.carListName(), JSON.stringify(carList));
+            }
         }
     }
 }
@@ -116,7 +108,7 @@ Gas.loadCarList = function (){
 
     if(carList !== null && carList.length > 0){
         carList.forEach(function(element) {
-            items += '<a class=\'mdl-navigation__link\' onclick=\'Gas.loadCar("' + element + '")\' >' + element + '</a>';
+            items += '<a class=\'mdl-navigation__link auto-loaded\' onclick=\'Gas.loadCar("' + element + '")\' >' + element + '</a>';
         }, this);
 
         document.getElementById('listOfCars').innerHTML = items;
@@ -138,25 +130,24 @@ Gas.serializeFields = function () {
         gasSpend : document.getElementById('gasSpend').value 
     };
 }
-            
-var calculate = document.getElementById('calculate');
-            
-calculate.addEventListener('click', function (){
-    Gas.calculate();   
-});
 
-var save = document.getElementById('saveData');
+Gas.removeFromList = function (carName) {
+    var carList = JSON.parse(window.localStorage.getItem(Gas.carListName()));
 
-save.addEventListener('click', function () {
-    Gas.saveState(Gas.serializeFields());
-});
+    if(carList.indexOf(carName) >= 0){
+        carList.pop(carName);
+    }
 
-var load = document.getElementById('loadData');
+    window.localStorage.setItem(Gas.carListName(), JSON.stringify(carList));
 
-load.addEventListener('click', function(){
-    Gas.loadState();
-});
-
-window.onload = function () {
-    Gas.loadCarList();
+    GasHelper.showAlert('Car ' + carName + ' removed!');
 }
+
+Gas.removeCar = function (carName){
+    window.localStorage.removeItem(carName);    
+}
+
+Gas.deleteLoadedCar = function (){
+    Gas.removeFromList(Gas.currentCar);
+    Gas.removeCar(Gas.currentCar);
+};
